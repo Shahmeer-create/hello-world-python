@@ -1,0 +1,31 @@
+# .github/workflows/python-app.yml
+name: Python Application CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: amazonlinux:2023
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Install Python
+      run: |
+        sudo yum update -y
+        sudo yum install -y python3
+
+    - name: Verify Python Installation
+      run: python3 --version
+
+    - name: Run the application
+      run: |
+        python3 app.py
+
